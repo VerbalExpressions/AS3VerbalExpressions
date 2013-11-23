@@ -368,7 +368,7 @@ package
 		 * @param	value
 		 * @return
 		 */
-		public function or(value:String):VerExp
+		public function or(value:String = null):VerExp
 		{
 			prefixes += "(?:";
 			suffixes = ")" + suffixes;
@@ -380,6 +380,40 @@ package
 			
 			return this;
 		}
+		
+       	/**
+		 * Repeats the previous item
+		 * exactly n times or between n and m times.
+		 * @param	args
+		 * @return
+		 */
+		public function repeatPrevious(...args):VerExp 
+		{
+		    var c:String = "";
+			if (args.length == 1) {
+				if (!isNaN(args[0])) {
+					c = "{" + args[0] + "}";
+				}
+			}
+			else if (args.length == 2) {
+				var v:Array = [];
+				for(var i:int = 0; i< 2; i++) {
+					if (isNaN(args[i])) {
+						break;
+					}
+					else {
+						v.push(args[i]);
+					}
+				}
+				if(v.length > 0){
+					c = "{" + v.join(",") + "}"; 
+				}
+			}
+			if (c != "") {
+				this.add(c);
+			}
+        	return this;
+		 }
 		
 		/**
 		 * Starts a capturing group
