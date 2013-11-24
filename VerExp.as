@@ -381,15 +381,15 @@ package
 			return this;
 		}
 		
-       	/**
+		/**
 		 * Repeats the previous item
 		 * exactly n times or between n and m times.
-		 * @param	args
+		 * @param	...args
 		 * @return
 		 */
 		public function repeatPrevious(...args):VerExp 
 		{
-		    var c:String = "";
+			var c:String = "";
 			if (args.length == 1) {
 				if (!isNaN(args[0])) {
 					c = "{" + args[0] + "}";
@@ -412,9 +412,9 @@ package
 			if (c != "") {
 				this.add(c);
 			}
-        	return this;
-		 }
-		
+			return this;
+		}
+		 
 		/**
 		 * Starts a capturing group
 		 * @return
